@@ -19,5 +19,7 @@ If you'd like to contribute, please fork the repository and create a pull reques
 Do whatever you want, as long as its for the good!
 
 ## Contact
+
 Project Link: [https://github.com/Falabdullateef/Java](https://github.com/Falabdullateef/Java).
+
 Discord: icechill
