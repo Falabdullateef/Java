@@ -5,9 +5,9 @@ This repository showcases advanced Java programming through a variety of project
 Explore the following directories to delve into each project or solution:
 
 - [Codeforces](./Codeforces) - Solutions to various Codeforces problems.
-- [First Scripts](./First%20Scripts) - Initial scripts showcasing basic to advanced Java concepts.
-- [JDA/dcbot](./JDA/dcbot) - A project utilizing the Java Discord API to create a Discord bot.
-- [Math/Finding the Composite Number](./Math/Finding%20the%20Composite%20Number) - A mathematical program to find composite numbers.
+- [First Scripts](https://github.com/Falabdullateef/Java/tree/main/First%20scripts) - Initial scripts showcasing basic to advanced Java concepts.
+- [JDA/dcbot](./JDA) - A project utilizing the Java Discord API to create a Discord bot.
+- [Math/Finding the Composite Number](https://github.com/Falabdullateef/Java/tree/main/Math/Finding%20the%20composite%20number) - A mathematical program to find composite numbers.
 
 
 ## Contributing
