@@ -16,7 +16,7 @@ If you'd like to contribute, please fork the repository and create a pull reques
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+Do whatever you want, as long as its for the good!
 
 ## Contact
 Project Link: [https://github.com/Falabdullateef/Java](https://github.com/Falabdullateef/Java)
