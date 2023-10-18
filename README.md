@@ -22,4 +22,4 @@ Do whatever you want, as long as its for the good!
 
 Project Link: [https://github.com/Falabdullateef/Java](https://github.com/Falabdullateef/Java).
 
-Discord: icechill
+Discord: icywater
