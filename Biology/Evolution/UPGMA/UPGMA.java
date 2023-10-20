@@ -1,32 +1,40 @@
 import java.util.*;
 
 public class UPGMA {
-    private static final Map<String, Map<String, Double>> distanceMatrix = new LinkedHashMap<>();
-    private static final List<String> speciesList = new ArrayList<>();
-    private static final Map<String, TreeNode> treeNodes = new HashMap<>();
+
+    private static Scanner scanner = new Scanner(System.in);
+    private static Map<String, Map<String, Double>> distanceMatrix = new HashMap<>();
+    private static Map<String, TreeNode> treeNodes = new HashMap<>();
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int numSpecies = scanner.nextInt();
-        scanner.nextLine();  // consume the newline
 
-        List<String> sequences = new ArrayList<>();
-        for (int i = 0; i < numSpecies; i++) {
-            String sequence = scanner.nextLine();
-            sequences.add(sequence);
-            speciesList.add("Species" + (i+1));
-            treeNodes.put("Species" + (i+1), new TreeNode("Species" + (i+1)));
+        // 1. Prompt user to input the number of species
+        System.out.print("Enter the number of species: ");
+        int numOfSpecies = scanner.nextInt();
+        scanner.nextLine();  // Consume newline left-over
+
+        String[] speciesNames = new String[numOfSpecies];
+
+        // 2. Prompt user to input the name of each species
+        for (int i = 0; i < numOfSpecies; i++) {
+            System.out.print("Enter name for species " + (i + 1) + ": ");
+            speciesNames[i] = scanner.nextLine();
         }
 
-        populateDistanceMatrix(sequences);
+        List<String> sequences = new ArrayList<>();
+        for (int i = 0; i < numOfSpecies; i++) {
+            System.out.print("Enter sequence for " + speciesNames[i] + ": ");
+            sequences.add(scanner.nextLine());
+        }
+
+        populateDistanceMatrix(speciesNames, sequences);
 
         while (distanceMatrix.size() > 1) {
             String[] minPair = findMinPair();
             updateDistanceMatrix(minPair[0], minPair[1]);
         }
 
-        TreeNode root = treeNodes.values().iterator().next();
-        printTree(root, "", true);
+        printTree(treeNodes.values().iterator().next(), "", true);
     }
 
     private static String[] findMinPair() {
@@ -92,15 +100,17 @@ public class UPGMA {
             printTree(node.right, newPrefix, true);
         }
     }
-    private static void populateDistanceMatrix(List<String> sequences) {
-        for (int i = 0; i < sequences.size(); i++) {
-            distanceMatrix.put(speciesList.get(i), new HashMap<>());
-            for (int j = 0; j < sequences.size(); j++) {
+    private static void populateDistanceMatrix(String[] species, List<String> sequences) {
+        for (int i = 0; i < species.length; i++) {
+            distanceMatrix.put(species[i], new HashMap<>());
+            treeNodes.put(species[i], new TreeNode(species[i]));
+            for (int j = 0; j < species.length; j++) {
                 double distance = calculatePairwiseDistance(sequences.get(i), sequences.get(j));
-                distanceMatrix.get(speciesList.get(i)).put(speciesList.get(j), distance);
+                distanceMatrix.get(species[i]).put(species[j], distance);
             }
         }
     }
+
 
     private static double calculatePairwiseDistance(String seq1, String seq2) {
         double distance = 0;
