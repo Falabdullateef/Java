@@ -31,6 +31,3 @@ Your contributions are welcomed! Feel free to fork this repository, create a new
 
 This project adopts a spirit of open collaboration. Do whatever you wish, as long as it contributes to the greater good!
 
-## Acknowledgments
-
-- A special thanks to individuals or organizations that have contributed to this project or offered invaluable insights.
