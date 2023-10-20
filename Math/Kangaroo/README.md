@@ -16,11 +16,11 @@ To get started, clone this repository and navigate to the `Kangaroo` directory.
 2. Navigate to the `Kangaroo` directory.
 3. Compile the Java file of your choice, for example:
     ```bash
-    javac Solution01.java
+    javac SolutionX.java
     ```
 4. Run the compiled Java class, or use an IDE like Intellji to run them for example:
     ```bash
-    java BruteForceStars.java
+    java SolutionX.java
     ```
 
 ## Contributing
