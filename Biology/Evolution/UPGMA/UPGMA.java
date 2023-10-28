@@ -1,33 +1,50 @@
 import java.util.*;
 
-public class UPGMA {
+public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
     private static Map<String, Map<String, Double>> distanceMatrix = new HashMap<>();
     private static Map<String, TreeNode> treeNodes = new HashMap<>();
 
     public static void main(String[] args) {
+        System.out.println("What do you have?");
+        System.out.println("1. DNA sequence");
+        System.out.println("2. Distance matrix");
+        System.out.print("Enter your choice (1/2): ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();  // Consume newline left-over
 
-        // 1. Prompt user to input the number of species
         System.out.print("Enter the number of species: ");
         int numOfSpecies = scanner.nextInt();
         scanner.nextLine();  // Consume newline left-over
 
         String[] speciesNames = new String[numOfSpecies];
 
-        // 2. Prompt user to input the name of each species
+        // Prompt user to input the name of each species
         for (int i = 0; i < numOfSpecies; i++) {
             System.out.print("Enter name for species " + (i + 1) + ": ");
             speciesNames[i] = scanner.nextLine();
         }
 
-        List<String> sequences = new ArrayList<>();
-        for (int i = 0; i < numOfSpecies; i++) {
-            System.out.print("Enter sequence for " + speciesNames[i] + ": ");
-            sequences.add(scanner.nextLine());
+        if (choice == 1) { // User chose DNA sequence
+            List<String> sequences = new ArrayList<>();
+            for (int i = 0; i < numOfSpecies; i++) {
+                System.out.print("Enter sequence for " + speciesNames[i] + ": ");
+                sequences.add(scanner.nextLine());
+            }
+            populateDistanceMatrix(speciesNames, sequences);
+        } else if (choice == 2) { // User chose Distance matrix
+            for (int i = 0; i < numOfSpecies; i++) {
+                distanceMatrix.put(speciesNames[i], new HashMap<>());
+                for (int j = 0; j < numOfSpecies; j++) {
+                    System.out.print("Enter distance between " + speciesNames[i] + " and " + speciesNames[j] + ": ");
+                    double distance = scanner.nextDouble();
+                    distanceMatrix.get(speciesNames[i]).put(speciesNames[j], distance);
+                }
+                treeNodes.put(speciesNames[i], new TreeNode(speciesNames[i]));
+                scanner.nextLine();  // Consume newline left-over after each species
+            }
         }
-
-        populateDistanceMatrix(speciesNames, sequences);
 
         while (distanceMatrix.size() > 1) {
             String[] minPair = findMinPair();
@@ -36,6 +53,7 @@ public class UPGMA {
 
         printTree(treeNodes.values().iterator().next(), "", true);
     }
+
 
     private static String[] findMinPair() {
         String[] pair = new String[2];
