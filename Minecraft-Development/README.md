@@ -8,7 +8,8 @@ In this repository, I aim to:
 
 - **Share Knowledge**: Document my progress, code snippets, challenges, and lessons learned to help others on their plugin development journey.
 - **Encourage Collaboration**: Foster a collaborative environment where we can share ideas, provide feedback, and contribute to each other's projects.
-- **Build Community**: Connect with fellow Minecraft enthusiasts and plugin developers, forming a supportive community dedicated to improving our craft.
+
+- **Build Community**: Connect with fellow Minecraft enthusiasts and plugin developers to form a supportive community focused on improving our craft.
 
 ## How to Contribute
 
