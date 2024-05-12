@@ -1,6 +1,6 @@
 # My Minecraft Plugin Development Journey
 
-Welcome to my open-source Minecraft plugin development journey repository! This project documents my journey as I explore the fascinating realm of Minecraft plugin development. Whether you're a seasoned plugin developer or just starting out, I invite you to join me on this adventure!
+Welcome to my open-source Minecraft plugin development adventure repository! This project records my journey into the intriguing world of Minecraft plugin development. Whether you're an experienced plugin developer or just starting out, I encourage you to join me on this voyage!
 
 ## Overview
 
