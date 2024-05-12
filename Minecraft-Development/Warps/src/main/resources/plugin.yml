@@ -1,0 +1,31 @@
+name: warps
+version: '${project.version}'
+main: me.faisal.warps.Warps
+author: Faisal
+description: A project for testing multiple things and playing around with Spigot API
+api-version: '1.20'
+commands:
+  warp:
+    description: "Teleports you to the specified warp"
+    usage: "/warp <warp>"
+    permission: warps.warp
+  mines:
+    description: "Teleport you to the mines"
+    usage: "/mines"
+    aliases: "/mine"
+    permission: warps.warp
+  crates:
+    description: "Teleport you to the crates"
+    usage: "/crates"
+    permission: warps.warp
+  spawn:
+    description: "Teleport you to the spawn"
+    usage: "/spawn"
+    permission: warps.warp
+  warps:
+    description: "List all the warps"
+    usage: "/warps"
+    permission: warps.warp
+  setwarp:
+    description: "Set a warp"
+    usage: "/setwarp <warp>"

@@ -1,0 +1,137 @@
+options:
+	prefix: <##45bbe6>SkyXGenz&r »
+
+function tpsound(p: player):
+	play sound "entity.enderman.teleport" with volume 2 and pitch 2 to {_p}
+	play sound "entity.experience_orb.pickup" with volume 2 and pitch 2 to {_p}
+function nosound(p: player):
+	play sound "entity.villager.no" with volume 2 and pitch 2 to {_p}
+
+
+on player join:
+	if player has not played before:
+		if {spawn} is not set:
+			teleport player to location(-340.5, 183.5, -259.55, "world", -90, 0)
+		else:
+			teleport player to {spawn}
+	else:
+		if {spawn} is not set:
+			teleport player to location(-340.5, 183.5, -259.55, "world", -90, 0)
+		else:
+			teleport player to {spawn}
+
+on player respawn:
+	if {spawn} is not set:
+		teleport player to location(-340.5, 183.5, -259.55, "world", -90, 0)
+	else:
+		teleport player to {spawn}
+
+command /setspawn:
+	permission: skript.spawn.set
+	trigger:
+		set {spawn} to location of player
+		send "{@prefix} &aLocation Of Spawn Has Been Set To %spawn%"
+
+command /spawn [<player>]:
+	trigger:
+		if {spawn} is set:
+			if arg-1 is set:
+				if player has permission "skript.spawn.tpothers":
+					teleport arg-1 to {spawn}
+					send "{@prefix} &aTeleported %arg-1% to spawn!" to player
+					send "{@prefix} &aTeleported to spawn!" to arg-1
+					tpsound(arg-1)
+					play sound "BLOCK_NOTE_BLOCK_PLING" with volume 2 and pitch 2 to player
+				else:
+					send "{@prefix} &4You don't have permission to do this!"
+					nosound(player)
+
+			else:
+				send "{@prefix} &aTeleported to spawn!" to player
+				teleport player to {spawn}
+				tpsound(player)
+
+		else:
+			send "{@prefix} &cSpawn Location is not set, please do /setspawn" to player
+command /mines [<player>]:
+	aliases: /mine
+	trigger:
+		#Same mechanism as /spawn but the location is (-204, 51.5, -271, "world", 180, 0)
+		if arg-1 is set:
+			if player has permission "skript.warp.tpothers":
+				teleport arg-1 to location(-204, 51.5, -271, "world", 180, 0)
+				send "{@prefix} &aTeleported %arg-1% to mines!" to player
+				send "{@prefix} &aTeleported to mines!" to arg-1
+				tpsound(arg-1)
+				play sound "BLOCK_NOTE_BLOCK_PLING" with volume 2 and pitch 2 to player
+			else:
+				send "{@prefix} &4You don't have permission to do this!"
+				nosound(player)
+
+		else:
+			send "{@prefix} &aTeleported to mines!" to player
+			teleport player to location(-204, 51.5, -271, "world", 180, 0)
+			tpsound(player)
+#location (-580.5, 132.5, -276.5 , "world", -180, 0)
+command /crates [<player>]:
+	trigger:
+		if arg-1 is set:
+			if player has permission "skript.warp.tpothers":
+				teleport arg-1 to location(-580.5, 132.5, -276.5 , "world", -180, 0)
+				send "{@prefix} &aTeleported %arg-1% to crates!" to player
+				send "{@prefix} &aTeleported to crates!" to arg-1
+				tpsound(arg-1)
+				play sound "BLOCK_NOTE_BLOCK_PLING" with volume 2 and pitch 2 to player
+			else:
+				send "{@prefix} &4You don't have permission to do this!"
+				nosound(player)
+
+		else:
+			send "{@prefix} &aTeleported to crates!" to player
+			teleport player to location(-580.5, 132.5, -276.5 , "world", -180, 0)
+			tpsound(player)
+
+command /warp [<text>] [<player>]:
+	trigger:
+		if arg-1 is set: #using the fact that you can do "make player execute command /spawn"
+			if arg-2 is set:
+				if player has permission "skript.warp.tpothers":
+					if arg-1 in lowercase is "spawn":
+						make player execute command "/spawn %arg-2%"
+						send "{@prefix} &aTeleported %arg-2% to spawn!" to player
+					else if arg-1 in lowercase is "mines" or "mine":
+						make player execute command "/mines %arg-2%"
+						send "{@prefix} &aTeleported %arg-2% to mines!" to player
+					else if arg-1 in lowercase is "crates" or "crate":
+						make player execute command "/crates %arg-2%"
+						send "{@prefix} &aTeleported %arg-2% to crates!" to player
+					else:
+						send "{@prefix} &cUnable to find warp, please do /warps!" to player
+						play sound "block.note_block.bass" with volume 2 and pitch 2 to player
+			else:
+				if arg-1 in lowercase is "spawn":
+					make player execute command "/spawn"
+				else if arg-1 in lowercase is "mines" or "mine":
+					make player execute command "/mines"
+					send "{@prefix} &aTeleported to mines!" to player
+				else if arg-1 in lowercase is "crates" or "crate":
+					make player execute command "/crates"
+					send "{@prefix} &aTeleported to crates!" to player
+				else:
+					send "{@prefix} &cUnable to find warp, please do /warps!" to player
+					play sound "block.note_block.bass" with volume 2 and pitch 2 to player
+
+		else:
+			send "{@prefix} &cPlease specify a warp, /warps!" to player
+			#send the correct usage
+			send "{@prefix} &cCorrect Usage: /warp <warp>" to player
+			play sound "block.note_block.bass" with volume 2 and pitch 2 to player
+
+
+on tab complete of "/warp":
+	set tab completion of position 1 to "spawn" and "mines" and "crates"
+
+command /warps:
+	trigger:
+		send "{@prefix} Warps available: spawn, mines, crates" to player
+		play sound "block.note_block.pling" with volume 2 and pitch 2 to player
