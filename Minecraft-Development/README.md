@@ -19,7 +19,6 @@ I welcome contributions from developers of all skill levels! Here are a few ways
 - **Report Issues**: Encountered a bug or have an idea for improvement? Submit an issue and let me know!
 - **Provide Feedback**: Have feedback on existing code or documentation? I'd love to hear your thoughts and suggestions.
 
-For more information on how to contribute, please refer to my [Contribution Guidelines](CONTRIBUTING.md).
 
 ## Getting Started
 
@@ -29,9 +28,6 @@ If you're new to Minecraft plugin development or want to join my journey, here a
 - **[Bukkit Forums](https://bukkit.org/forums/)**: A community forum for Minecraft plugin developers to ask questions, share experiences, and connect with others.
 - **[YouTube Tutorials](https://www.youtube.com/)**: Explore a variety of video tutorials covering different aspects of Minecraft plugin development.
 
-## Community Guidelines
-
-To ensure a positive and inclusive community experience, I ask all contributors to adhere to my [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Acknowledgements
 
@@ -39,4 +35,4 @@ I extend my gratitude to the Minecraft community and all the developers who have
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Do whatever you want, as long as it's for the good!
