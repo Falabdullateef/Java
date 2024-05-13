@@ -4,12 +4,7 @@
 If you're new to LeetCode or want to explore more problems, you can:
 
 - **[Visit LeetCode](https://leetcode.com/)**: Explore the official LeetCode website to access a wide range of coding problems and challenges.
-- **[Explore Solutions](/java/leetcode/problems)**: Dive into the solutions in this repository to see how different problems are tackled using Java.
-- **[Contribute](CONTRIBUTING.md)**: If you'd like to contribute your own solutions or improvements, please check the contribution guidelines.
-
-## Contribution
-
-Contributions are welcome! If you have a new solution to add, want to improve existing solutions, or have suggestions for enhancements, please refer to the [Contribution Guidelines](CONTRIBUTING.md).
+- **[Explore Solutions](/Java/leetcode)**: Dive into the solutions in this repository to see how different problems are tackled using Java.
 
 ## Acknowledgements
 
