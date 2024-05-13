@@ -28,9 +28,6 @@ If you're new to Minecraft plugin development or want to join my journey, here a
 - **[Bukkit Forums](https://bukkit.org/forums/)**: A community forum for Minecraft plugin developers to ask questions, share experiences, and connect with others.
 - **[YouTube Tutorials](https://www.youtube.com/)**: Explore a variety of video tutorials covering different aspects of Minecraft plugin development.
 
-## Community Guidelines
-
-To ensure a positive and inclusive community experience, I ask all contributors to adhere to my [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Acknowledgements
 
