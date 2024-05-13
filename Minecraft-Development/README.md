@@ -19,7 +19,6 @@ I welcome contributions from developers of all skill levels! Here are a few ways
 - **Report Issues**: Encountered a bug or have an idea for improvement? Submit an issue and let me know!
 - **Provide Feedback**: Have feedback on existing code or documentation? I'd love to hear your thoughts and suggestions.
 
-For more information on how to contribute, please refer to my [Contribution Guidelines](CONTRIBUTING.md).
 
 ## Getting Started
 
