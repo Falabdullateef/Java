@@ -1,0 +1,131 @@
+options:
+    prefix: <##45bbe6>SkyXGenz&r »
+
+command /start:
+    trigger:
+        if {started::%player's uuid%} is true:
+            send "{@prefix} &cYou have already started!" to player
+        else:
+            teleport player to location(0, 63, 0 , "realSkyxGenz")
+            wait 1 second
+            make player execute command "/plot auto"
+            give player 5 of {gens::ash}
+            make player execute command "/plot home"
+            send "{@prefix} &aWelcome to the server!" to player
+            send "&aYou have been given 5 Ash Gen!" to player
+            send "&aUse &b/plot home &ato go to your plot!" to player
+            set {started::%player's uuid%} to true
+
+on first join:
+    set {started::%player's uuid%} to false
+    loop 25 times:
+        if {started::%player's uuid%} is false:
+            send "&f&lType &e&l/start  &f&lto begin your journey!" to player
+            wait 15 seconds
+        else:
+            stop loop
+    #"&bFortune" with lore "" and "&fIncreases the amount of blocks" and "&fyou obtain when mining" and "" and "&bInformation:" and "&b&l| &fLevel: %{levels::fortune::%{_p}'s uuid%}%/5" and "&b&l| &fPrice: %{levelcost::fortune::%{_p}'s uuid%}% ☁ Skycoins" and "" and "&bClick&f to upgrade!"
+    set slot 8 of player's inventory to nether star named "&bMenu" with lore "" and "&bInformation:" and "&b&l|&r &bClick&f to open the menu!"
+
+function menu(p: player):
+    set metadata tag "menu" of {_p} to chest with 6 rows named "&bServer Menu"
+    set slot 0 and 1 and 2 and 3 and 4 and 5 and 6 and 45 and 46 and 53 and 7 and 8 and 9 and 18 and 27 and 36 and 17 and 26 and 35 and 44 and 47 and 48 and 49 and 50 and 51 and 52 of metadata tag "menu" of {_p} to black stained glass pane named " "
+    set slot 10 of metadata tag "menu" of {_p} to paper named "&bStore" with lore "" and "&fClick to open the store!"
+    set slot 11 of metadata tag "menu" of {_p} to paper named "&bDiscord" with lore "" and "&fClick to join our Discord!"
+    #in game shop
+    set slot 12 of metadata tag "menu" of {_p} to black wool named "&bGenInfo" with lore "" and "&bInformation:" and "&b&l| Click&r&f to the list of gens!"
+    set slot 13 of metadata tag "menu" of {_p} to grass block named "&bPlot" with lore "" and "&bInformation:" and "&b&l| Click&r&f to go to your plot!"
+    set slot 14 of metadata tag "menu" of {_p} to diamond pickaxe named "&bMines" with lore "" and "&bInformation:" and "&b&l| Click&r&f to go to the mines!"
+    set slot 15 of metadata tag "menu" of {_p} to emerald named "&bShop" with lore "" and "&bInformation:" and "&b&l| Click&r&f to open the shop!"
+    set slot 16 of metadata tag "menu" of {_p} to writable book named "&bRules" with lore "" and "&bInformation:" and "&b&l| Click&r&f to view the rules!"
+    open (metadata tag "menu" of {_p}) to {_p}
+
+on inventory click:
+    if event-item's name contains "&bMenu":
+        cancel event
+        send "{@prefix} &cYou cannot move the menu!" to player
+        play sound "entity.villager.no" with pitch 2 to player
+    if player's top inventory = (metadata tag "menu" of player):
+        cancel event
+        if event-slot = 10:
+            make player execute command "/buy"
+            closemenu(player)
+        else if event-slot = 11:
+            make player execute command "/discord"
+            closemenu(player)
+        else if event-slot = 12:
+            make player execute command "/gens"
+            closemenu(player)
+        else if event-slot = 13:
+            make player execute command "/plot home"
+            closemenu(player)
+        else if event-slot = 14:
+            make player execute command "/warp mines"
+            closemenu(player)
+        else if event-slot = 15:
+            closemenu(player)
+            make player execute command "/shop"
+        else if event-slot = 16:
+            make player execute command "/rules"
+            closemenu(player)
+
+function closemenu(p: player):
+    close {_p}' inventory
+    delete metadata tag "menu" of {_p}
+
+on right click:
+    if name of player's held item contains "&bMenu":
+        menu(player)
+
+on drop:
+    if name of player's held item contains "&bMenu":
+        cancel event
+        send "{@prefix} &cYou cannot drop the menu!" to player
+        play sound "entity.villager.no" with pitch 2 to player
+
+
+on load:
+    delete {messages::*}
+    set {messages::1} to "%nl%%nl%<##AFFF6C>❚ <##AFFF6C>&lWANT TO SUPPORT THE SERVER?%nl%<##AFFF6C>❚ &fOur store contains fun perks such as%nl%<##AFFF6C>❚ &fcheap ranks, chat tags and more!%nl%<##AFFF6C>❚%nl%<##AFFF6C>❚ &fVisit using <##AFFF6C>&l&n/buy"
+    set {messages::2} to "%nl%%nl%<##6E9AFF>❚ <##6E9AFF>&lSTAY UP TO DATE!%nl%<##6E9AFF>❚ &fJoin our Discord server to stay up to date with%nl%<##6E9AFF>❚ &fannouncements, giveaways, and the community!%nl%<##6E9AFF>❚%nl%<##6E9AFF>❚ &fJoin using <##6E9AFF>&n&l/discord"
+    set {messages::3} to "%nl%%nl%<##91FFA0>❚ <##91FFA0>&lNEED SOME HELP?%nl%<##91FFA0>❚ &fIf you are unsure of anything be sure to check%nl%<##91FFA0>❚ &four help menu for a list of our features!%nl%<##91FFA0>❚%nl%<##91FFA0>❚ &fOpen using <##91FFA0>&n&l/help"
+    set {messages::4} to "%nl%%nl%<##BBFF91>❚ <##BBFF91>&lSERVER PLAYER COUNT LOW?%nl%<##BBFF91>❚ &fIf you want to help support us, please use /ads and%nl%<##BBFF91>❚ &fclick to copy a message to copy & paste in the Minehut lobby!%nl%<##BBFF91>❚%nl%<##91FFA0>❚ &fView messages using <##BBFF91>&n&l/ads"
+    set {messages::5} to "%nl%%nl%<##B791FF>❚ <##B791FF>&lENJOYING THE SERVER?%nl%<##B791FF>❚ &fIf you're enjoying the server, be sure to%nl%<##B791FF>❚ &ffavorite us on Minehut so you don't forget the name!%nl%<##B791FF>❚%nl%<##B791FF>❚ &fFavorite using <##B791FF>&n&l/favorite"
+    set {broadcastcounter} to 1
+
+every 5 minutes:
+    if {broadcastcounter} is 5:
+        set {broadcastcounter} to 1
+    if {broadcastcounter} is 4:
+        if the online player count is less than 10:
+            broadcast "%{messages::%{broadcastcounter}%}%"
+            play sound "entity.experience_orb.pickup" with pitch 0.8 to all players
+        else:
+            add 1 to {broadcastcounter}
+            broadcast "%{messages::%{broadcastcounter}%}%"
+            play sound "entity.experience_orb.pickup" with pitch 0.8 to all players
+    else:
+        add 1 to {broadcastcounter}
+        broadcast "%{messages::%{broadcastcounter}%}%"
+        play sound "entity.experience_orb.pickup" with pitch 0.8 to all players
+
+
+function sendrules(p: player):
+    send "&7&m      > &7&b&lServer rules &7>&7&m      " to {_p}
+    send "&b1.&f Respect all players and staff." to {_p}
+    send "&b2.&f Use appropriate language." to {_p}
+    send "&b3.&f No cheating or hacking." to {_p}
+    send "&b4.&f You must have fun and enjoy!" to {_p}
+    send "&7&m     > &7&b&lServer rules &7>&7&m      -" to {_p}
+
+
+command /rules [<player>]:
+    trigger:
+        if arg-1 is set:
+            if player has permission "skript.rules.others":
+                send "{@prefix} &aRules have been sent to %arg-1%!" to player
+                sendrules(arg-1)
+            else:
+                sendrules(player)
+        else:
+            sendrules(player)
