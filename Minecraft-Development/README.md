@@ -38,4 +38,4 @@ I extend my gratitude to the Minecraft community and all the developers who have
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Do whatever you want, as long as it's for the good!
