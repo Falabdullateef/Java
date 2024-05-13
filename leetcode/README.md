@@ -15,4 +15,4 @@ If you'd like to contribute, please fork the repository and create a pull reques
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Do whatever you want, as long as it's for the good!
