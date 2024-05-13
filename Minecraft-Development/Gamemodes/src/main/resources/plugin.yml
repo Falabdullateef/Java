@@ -1,0 +1,25 @@
+name: Gamemodes
+version: '${project.version}'
+main: me.faisal.gamemodes.Gamemodes
+api-version: '1.20'
+commands:
+  gamemode:
+    description: Change your gamemode
+    usage: /gamemode <gamemode> [player]
+    permission: gamemodes.gamemode
+  gms:
+    description: Change your gamemode to survival
+    usage: /gms [player]
+    permission: gamemodes.gms
+  gmc:
+    description: Change your gamemode to creative
+    usage: /gmc [player]
+    permission: gamemodes.gmc
+  gma:
+    description: Change your gamemode to adventure
+    usage: /gma [player]
+    permission: gamemodes.gma
+  gmsp:
+    description: Change your gamemode to spectator
+    usage: /gmsp [player]
+    permission: gamemodes.gmsp
