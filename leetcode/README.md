@@ -10,6 +10,9 @@ If you're new to LeetCode or want to explore more problems, you can:
 
 I would like to express my gratitude to the LeetCode community and contributors for providing a platform to enhance coding skills and to everyone who has contributed to this repository.
 
+## Contributions
+If you'd like to contribute, please fork the repository and create a pull request. All contributions are welcome!
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
