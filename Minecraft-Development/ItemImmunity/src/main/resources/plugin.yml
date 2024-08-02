@@ -1,0 +1,4 @@
+name: ItemImmunity
+version: '${project.version}'
+main: me.icy.itemimmunity.ItemImmunity
+api-version: '1.20'
