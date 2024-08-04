@@ -1,0 +1,4 @@
+name: AutoMod
+version: '1.0'
+main: me.icywater.automod.AutoMod
+api-version: '1.20'

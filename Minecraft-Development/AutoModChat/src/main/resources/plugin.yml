@@ -1,0 +1,4 @@
+name: AutoMod
+version: '${project.version}'
+main: me.icywater.automod.AutoMod
+api-version: '1.20'
