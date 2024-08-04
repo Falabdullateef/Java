@@ -1,0 +1,7 @@
+# make sure everything is lowercase
+banned-words:
+  - "nigga"
+  - "fuck"
+  - "nigger"
+
+banned-words-message: '&4[AutoMod] &cYou cannot swear in chat!'

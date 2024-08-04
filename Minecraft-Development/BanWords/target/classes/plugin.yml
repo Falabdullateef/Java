@@ -1,4 +1,4 @@
 name: BanWords
-version: '${project.version}'
+version: '1.0'
 main: me.icywater.banwords.BanWords
 api-version: '1.20'
