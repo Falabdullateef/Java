@@ -1,8 +1,8 @@
 # Advanced Java Projects and Coding Problems Solutions Repository
 
-This repository showcases advanced Java programming through a variety of projects and solutions to Coding problems. It exhibits mastery in crafting efficient, reliable, and scalable software solutions while honing competitive coding skills.
+This repository features a range of projects and solutions to coding problems which demonstrate sophisticated Java programming.  It demonstrates proficiency in developing scalable, dependable, and effective software solutions while developing competitive coding abilities.
 
-Explore the following directories to delve into each project or solution:
+Here is a hyper-link and a brief of each directory:
 
 - [Codeforces](./Codeforces) - Solutions to various Codeforces problems.
 - [First Scripts](https://github.com/Falabdullateef/Java/tree/main/First%20scripts) - Initial scripts showcasing basic to advanced Java concepts.
