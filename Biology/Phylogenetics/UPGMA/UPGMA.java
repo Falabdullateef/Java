@@ -10,7 +10,7 @@ public class Main {
         System.out.println("What do you have?");
         System.out.println("1. DNA sequence");
         System.out.println("2. Distance matrix");
-    // TODO: Add option 3 for binary character (0/1) matrix input (presence/absence data)
+    // /todo: Add option 3 for binary character (0/1) presence/absence matrix input
         System.out.print("Enter your choice (1/2): ");
         int choice = scanner.nextInt();
         scanner.nextLine();  // Consume newline left-over
@@ -64,7 +64,7 @@ public class Main {
         }
 
         printTree(treeNodes.values().iterator().next(), "", true);
-    // TODO: Double-check clustering logic: verify average distance calculation and tie-breaking behavior
+    // /todo: Re-audit UPGMA clustering logic (average distance calc, tie handling)
     }
 
 
