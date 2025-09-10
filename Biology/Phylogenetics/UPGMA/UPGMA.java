@@ -38,11 +38,24 @@ public class Main {
             speciesNames[i] = scanner.nextLine();
         }
 
-    if (choice == 1) { // User chose DNA sequence
+        if (choice == 1) { // User chose DNA sequence
             List<String> sequences = new ArrayList<>();
+            Integer expectedLen = null;
             for (int i = 0; i < numOfSpecies; i++) {
-                System.out.print("Enter sequence for " + speciesNames[i] + ": ");
-                sequences.add(scanner.nextLine());
+                while (true) {
+                    System.out.print("Enter sequence for " + speciesNames[i] + ": ");
+                    String seq = scanner.nextLine().trim();
+                    if (expectedLen == null) {
+                        expectedLen = seq.length();
+                        sequences.add(seq);
+                        break;
+                    } else if (seq.length() == expectedLen) {
+                        sequences.add(seq);
+                        break;
+                    } else {
+                        System.out.println("All sequences must have the same length (expected " + expectedLen + "). Try again.");
+                    }
+                }
             }
             distanceMatrix.clear();
             treeNodes.clear();
@@ -109,7 +122,10 @@ public class Main {
             }
         }
 
-        while (distanceMatrix.size() > 1) {
+    // Ensure symmetry before clustering (safety)
+    symmetrizeMatrix();
+
+    while (distanceMatrix.size() > 1) {
             String[] minPair = findMinPair();
             updateDistanceMatrix(minPair[0], minPair[1]);
         }
@@ -122,17 +138,20 @@ public class Main {
     private static String[] findMinPair() {
         String[] pair = new String[2];
         double minDistance = Double.MAX_VALUE;
-
-        for (String species1 : distanceMatrix.keySet()) {
-            for (String species2 : distanceMatrix.get(species1).keySet()) {
-                if (!species1.equals(species2) && distanceMatrix.get(species1).get(species2) < minDistance) {
-                    minDistance = distanceMatrix.get(species1).get(species2);
-                    pair[0] = species1;
-                    pair[1] = species2;
+        List<String> labels = new ArrayList<>(distanceMatrix.keySet());
+        Collections.sort(labels);
+        for (int i = 0; i < labels.size(); i++) {
+            for (int j = i + 1; j < labels.size(); j++) {
+                String a = labels.get(i);
+                String b = labels.get(j);
+                double d = getDistance(a, b);
+                if (d < minDistance) {
+                    minDistance = d;
+                    pair[0] = a;
+                    pair[1] = b;
                 }
             }
         }
-
         return pair;
     }
 
@@ -152,8 +171,8 @@ public class Main {
 
         for (String otherSpecies : distanceMatrix.keySet()) {
             if (!otherSpecies.equals(species1) && !otherSpecies.equals(species2)) {
-                double d1 = distanceMatrix.get(species1).get(otherSpecies);
-                double d2 = distanceMatrix.get(species2).get(otherSpecies);
+                double d1 = getDistance(species1, otherSpecies);
+                double d2 = getDistance(species2, otherSpecies);
                 double newDistance;
                 if (useUPGMA) {
                     newDistance = ((size1 * d1) + (size2 * d2)) / (size1 + size2);
@@ -247,6 +266,45 @@ public class Main {
             if (v1.charAt(i) != v2.charAt(i)) dist++;
         }
         return dist;
+    }
+
+    private static double getDistance(String a, String b) {
+        if (a.equals(b)) return 0.0;
+        Map<String, Double> rowA = distanceMatrix.get(a);
+        if (rowA != null && rowA.containsKey(b)) {
+            return rowA.get(b);
+        }
+        Map<String, Double> rowB = distanceMatrix.get(b);
+        if (rowB != null && rowB.containsKey(a)) {
+            return rowB.get(a);
+        }
+        return Double.POSITIVE_INFINITY; // indicates missing entry
+    }
+
+    private static void symmetrizeMatrix() {
+        List<String> labels = new ArrayList<>(distanceMatrix.keySet());
+        for (String i : labels) {
+            distanceMatrix.computeIfAbsent(i, k -> new HashMap<>()).put(i, 0.0);
+        }
+        for (String i : labels) {
+            for (String j : labels) {
+                if (i.equals(j)) continue;
+                Double dij = null;
+                Map<String, Double> rowI = distanceMatrix.get(i);
+                if (rowI != null) dij = rowI.get(j);
+                Map<String, Double> rowJ = distanceMatrix.get(j);
+                Double dji = rowJ != null ? rowJ.get(i) : null;
+                if (dij == null && dji != null) {
+                    distanceMatrix.get(i).put(j, dji);
+                } else if (dji == null && dij != null) {
+                    distanceMatrix.get(j).put(i, dij);
+                } else if (dij != null && dji != null && Math.abs(dij - dji) > 1e-9) {
+                    double avg = (dij + dji) / 2.0;
+                    distanceMatrix.get(i).put(j, avg);
+                    distanceMatrix.get(j).put(i, avg);
+                }
+            }
+        }
     }
 
     private static void printDistanceMatrix() {
