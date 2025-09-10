@@ -308,7 +308,7 @@ public class Main {
     }
 
     private static void printDistanceMatrix() {
-        // Collect ordered list of keys for consistent columns
+        // Print only upper triangle (including diagonal) to avoid duplication
         List<String> labels = new ArrayList<>(distanceMatrix.keySet());
         Collections.sort(labels);
         System.out.print("\t");
@@ -316,14 +316,16 @@ public class Main {
             System.out.print(col + "\t");
         }
         System.out.println();
-        for (String row : labels) {
+        for (int i = 0; i < labels.size(); i++) {
+            String row = labels.get(i);
             System.out.print(row + "\t");
-            for (String col : labels) {
-                Double d = distanceMatrix.get(row).get(col);
-                if (d == null && distanceMatrix.get(col) != null) {
-                    d = distanceMatrix.get(col).get(row); // attempt symmetric lookup
+            for (int j = 0; j < labels.size(); j++) {
+                if (j < i) {
+                    System.out.print("\t"); // blank below diagonal
+                } else {
+                    double d = getDistance(row, labels.get(j));
+                    System.out.print(String.format(Locale.US, "%.2f\t", d));
                 }
-                System.out.print(String.format(Locale.US, "%.2f\t", d == null ? Double.NaN : d));
             }
             System.out.println();
         }
